@@ -40,6 +40,19 @@ public class Demo {
 
         fruitBox.addToContainer(greenApple);
         fruitBox.addToContainer(lemon);
+        fruitBox.addToContainer(goldApple);
+        fruitBox.addToContainer(sourOrange);
+        fruitBox.addToContainer(sugarOrange);
+
+        System.out.println("==========BEFORE SORT======");
+
+        fruitBox.listAllFruitsNames();
+
+        fruitBox.sortByName();
+
+        System.out.println("==========SORT===========");
+
+        fruitBox.listAllFruitsNames();
 
     }
 }
