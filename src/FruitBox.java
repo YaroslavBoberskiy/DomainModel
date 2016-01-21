@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by YB on 20.01.2016.
@@ -8,17 +9,29 @@ import java.util.Comparator;
 public class FruitBox<T extends Fruit> {
 
     private ArrayList<T> fruitBox;
+    private boolean isEmpty;
 
     FruitBox () {
         fruitBox = new ArrayList<T>();
+        isEmpty = true;
     }
 
     public void addToContainer (T fruit) {
         fruitBox.add(fruit);
+        if (fruitBox.size() == 0) {
+            isEmpty = true;
+        } else {
+            isEmpty = false;
+        }
     }
 
     public void removeFromContainer (T fruit) {
         fruitBox.remove(fruit);
+        if (fruitBox.size() == 0) {
+            isEmpty = true;
+        } else {
+            isEmpty = false;
+        }
     }
 
     public ArrayList<T> getFruitBox() {
@@ -26,8 +39,12 @@ public class FruitBox<T extends Fruit> {
     }
 
     public void listAllFruitsNames () {
-        for (T fruit : getFruitBox()) {
-            System.out.println(fruit.getName().toString());
+        if (isEmpty == false) {
+            for (T fruit : getFruitBox()) {
+                System.out.println(fruit.getName().toString());
+            }
+        } else {
+            throw new NoSuchElementException();
         }
     }
 
@@ -46,4 +63,7 @@ public class FruitBox<T extends Fruit> {
 
         }};
 
+    public boolean isEmpty() {
+        return isEmpty;
+    }
 }
